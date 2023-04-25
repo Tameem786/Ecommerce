@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6" id="info">
+        <h2>Adictovibes Ecommerce</h2>
+        <p>Subscribe Easy Tutorials Youtube Channel To More Videos</p>
+        <button>About Us</button>
+      </div>
+      <div class="col-md-6" id="form">
+        <h2>Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <!-- <label for="email">Email address</label> -->
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email Address">
+          </div>
+          <div class="form-group">
+            <!-- <label for="password">Password</label> -->
+            <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+            <a href="">Register here</a>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" [ngClass]="{ 'btn-disabled': loginForm.invalid }">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

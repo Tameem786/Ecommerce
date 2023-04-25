@@ -1,0 +1,85 @@
+<div class="main">
+    <div class="header">
+        <div class="header-item">
+            <mat-icon>storage</mat-icon>
+        </div>
+        <div class="header-item">Adictovibes Ecommerce</div>
+        <div class="header-item">
+            <mat-icon>notifications_none</mat-icon>
+            <mat-icon>person_outline</mat-icon>
+        </div>
+    </div>
+    <div class="body">
+        <div class="para">
+            <div class="welcome">Welcome to <br> Adictovibes</div>
+            <div class="links">
+                <div class="links-item"><a href="">Products</a></div>
+                <div class="links-item"><a href="">New Arrivales</a></div>
+                <div class="links-item"><a href="">About</a></div>
+                <div class="links-item"><a href="">Contact</a></div>
+            </div>
+            <div class="extra"></div>
+        </div>
+    </div>
+    <div class="showcase">
+        <div class="title">
+            <div class="text">
+                <span>
+                    <hr> FABRIC THAT <hr> 
+                </span>
+                <span>
+                    SPEAKS 
+                    <hr>
+                </span>
+            </div>
+            <div class="menu">
+                <div class="name">
+                    <span>Select Catagories</span>
+                </div>
+                <div class="options">
+                    <mat-chip-listbox>
+                        <mat-chip-option>T-Shirt</mat-chip-option>
+                        <mat-chip-option>Shoe</mat-chip-option>
+                        <mat-chip-option>Sneakers</mat-chip-option>
+                        <mat-chip-option>Sweat Shirt</mat-chip-option>
+                    </mat-chip-listbox>
+                </div>
+            </div>
+        </div>
+        <div class="advertisement">
+            <img src="https://house103.store/wp-content/uploads/2022/04/0S8A8319-scaled-e1649585777382.jpg" alt="">
+        </div>
+    </div>
+    <div class="products">
+        <div class="slideshow">
+            <div class="slides" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
+              <div class="slide" *ngFor="let image of products">
+                <div class="box">
+                    <div class="box-item" *ngFor="let image of products">
+                        <img [src]="image.url" [alt]="">
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="footer">
+        <div class="footer-item">
+            Logo
+        </div>
+        <div class="footer-item">
+            Get in touch
+            <p>tanvir.sakline@gmail.com</p>
+        </div>
+        <div class="footer-item">
+            Support <br>
+            <p>
+                <a href="">Privacy Policy</a> <br>
+                <a href="">Terms & Condition</a>
+            </p>
+        </div>
+        <div class="footer-item">
+            Developed by
+        </div>
+    </div>
+</div>
