@@ -1,85 +1,92 @@
 <div class="main">
     <div class="header">
-        <div class="header-item">
-            <mat-icon>storage</mat-icon>
+        <div class="logo">
+            <img src="/assets/images/logo.jpg" alt="">
         </div>
-        <div class="header-item">Adictovibes Ecommerce</div>
-        <div class="header-item">
-            <mat-icon>notifications_none</mat-icon>
-            <mat-icon>person_outline</mat-icon>
+        <div class="link">
+            <div class="links">
+                <div class="link-item">Home</div>
+                <div class="link-item">Products</div>
+                <div class="link-item">New Arrivals</div>
+                <div class="link-item">Contact</div>
+            </div>
         </div>
     </div>
     <div class="body">
-        <div class="para">
-            <div class="welcome">Welcome to <br> Adictovibes</div>
-            <div class="links">
-                <div class="links-item"><a href="">Products</a></div>
-                <div class="links-item"><a href="">New Arrivales</a></div>
-                <div class="links-item"><a href="">About</a></div>
-                <div class="links-item"><a href="">Contact</a></div>
-            </div>
-            <div class="extra"></div>
-        </div>
-    </div>
-    <div class="showcase">
-        <div class="title">
-            <div class="text">
-                <span>
-                    <hr> FABRIC THAT <hr> 
-                </span>
-                <span>
-                    SPEAKS 
-                    <hr>
-                </span>
-            </div>
-            <div class="menu">
-                <div class="name">
-                    <span>Select Catagories</span>
-                </div>
-                <div class="options">
-                    <mat-chip-listbox>
-                        <mat-chip-option>T-Shirt</mat-chip-option>
-                        <mat-chip-option>Shoe</mat-chip-option>
-                        <mat-chip-option>Sneakers</mat-chip-option>
-                        <mat-chip-option>Sweat Shirt</mat-chip-option>
-                    </mat-chip-listbox>
-                </div>
-            </div>
-        </div>
-        <div class="advertisement">
-            <img src="https://house103.store/wp-content/uploads/2022/04/0S8A8319-scaled-e1649585777382.jpg" alt="">
-        </div>
-    </div>
-    <div class="products">
-        <div class="slideshow">
-            <div class="slides" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
-              <div class="slide" *ngFor="let image of products">
-                <div class="box">
-                    <div class="box-item" *ngFor="let image of products">
-                        <img [src]="image.url" [alt]="">
+        <div class="two-cells">
+            <div class="cell">
+                <div class="grid-container">
+                    <div class="grid-item">
+                        T Shirt
+                        <ng-image-slider [images]="tShirtimages" [infinite]="false" [autoSlide]="1" #nav></ng-image-slider>
                     </div>
+                    <div class="grid-item">
+                        Hoodies
+                        <ng-image-slider [images]="hoodieImages" [infinite]="false" [autoSlide]="1"></ng-image-slider>
+                    </div>
+                    <div class="grid-item">
+                        Pants
+                        <ng-image-slider [images]="pantsImages" [infinite]="false" [autoSlide]="1"></ng-image-slider>
+                    </div>
+                    <!-- <div class="grid-item">Item 4</div> -->
+                </div>
+            </div>
+            <div class="cell">
+              <!-- <p>Cell 2 Content</p> -->
+              <div class="two-by-two-grid">
+                <div class="grid-item">
+                  <a href="#">
+                    <img src="https://i5.walmartimages.com/asr/3c0572ee-8ae2-446c-a66a-35c6a67c2e28.5faad6ffa470b22219b1c06cd46abd57.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff" alt="Image 1">
+                    <div class="overlay">
+                      <div class="text">Hoodies</div>
+                    </div>
+                  </a>
+                </div>
+                <div class="grid-item">
+                  <a href="#">
+                    <img src="https://www.byrdie.com/thmb/zNiaZ5l-aFdA1t2rlTVJENU52OU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1397919383-e52cf9fef6d14a92becf5c45c2e22e99.jpg" alt="Image 2">
+                    <div class="overlay">
+                      <div class="text">Pants</div>
+                    </div>
+                  </a>
+                </div>
+                <div class="grid-item">
+                  <a href="#">
+                    <img src="https://cdn.shopify.com/s/files/1/0249/5699/3587/products/5_1_1aef2493-3f2e-4e72-b151-dc2657c8c1b6_600x.jpg?v=1638253739" alt="Image 3">
+                    <div class="overlay">
+                      <div class="text">Socks</div>
+                    </div>
+                  </a>
+                </div>
+                <div class="grid-item">
+                  <a href="#">
+                    <img src="https://rukminim1.flixcart.com/image/612/612/l1grgcw0/t-shirt/x/o/5/m-t428hs-tm5p-eyebogler-original-imagdf2egzjxeqgk.jpeg?q=70" alt="Image 4">
+                    <div class="overlay">
+                      <div class="text">T-Shirt</div>
+                    </div>
+                  </a>
                 </div>
               </div>
-            </div>
-          </div>
+              
+        </div>
     </div>
     <div class="footer">
-        <div class="footer-item">
-            Logo
+        <div class="logo-1">
+            <img src="/assets/images/logo.jpg" alt="">
         </div>
-        <div class="footer-item">
-            Get in touch
-            <p>tanvir.sakline@gmail.com</p>
-        </div>
-        <div class="footer-item">
-            Support <br>
-            <p>
-                <a href="">Privacy Policy</a> <br>
-                <a href="">Terms & Condition</a>
-            </p>
-        </div>
-        <div class="footer-item">
-            Developed by
+        <div class="info">
+            <div class="info-item">
+                Get in touch <br> <br>
+                tanvir.sakline@gmail.com
+            </div>
+            <div class="info-item">
+                Support <br> <br>
+                Privacy Policy
+            </div>
+            <div class="info-item">
+                Developed By <br> <br>
+                Tanvir Sakline
+            </div>
         </div>
     </div>
 </div>

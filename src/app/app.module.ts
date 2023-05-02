@@ -9,6 +9,8 @@ import { HomeComponent } from './Components/home/home.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon'
 import {MatChipsModule} from '@angular/material/chips';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatSidenavModule,
     MatIconModule,
     MatChipsModule,
+    MatGridListModule,
+    NgImageSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
