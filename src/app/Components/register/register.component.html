@@ -8,18 +8,19 @@
         <button>About Us</button>
       </div>
       <div class="col-md-6" id="form">
-        <h2>Login</h2>
+        <h2>Registration</h2>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <input type="email" class="form-control" id="username" formControlName="username" placeholder="Username" required>
+              </div>
           <div class="form-group">
-            <!-- <label for="email">Email address</label> -->
             <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email Address" required>
           </div>
           <div class="form-group">
-            <!-- <label for="password">Password</label> -->
             <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" required>
-            <a href="register">Register here</a>
+            <a routerLink="login">Login here</a>
           </div>
-          <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" [ngClass]="{ 'btn-disabled': loginForm.invalid }">Login</button>
+          <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" [ngClass]="{ 'btn-disabled': loginForm.invalid }">Register</button>
         </form>
       </div>
     </div>
