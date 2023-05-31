@@ -1,27 +1,16 @@
-<div class="container">
-    <div class="row">
-      <div class="col-md-6" id="info">
-        <img src="/assets/images/logo.jpg" alt="" style="width:200px; height: 200px;">
-        <h2>Adictovibes Ecommerce</h2>
-        <p>Subscribe Easy Tutorials Youtube Channel To More Videos</p> <br>
-        <a routerLink="" style="color:white; font-size: 20px; border: 1px solid white; padding: 10px;">Home</a> <br> <br>
-        <button>About Us</button>
-      </div>
-      <div class="col-md-6" id="form">
-        <h2>Login</h2>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <!-- <label for="email">Email address</label> -->
-            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email Address" required>
-          </div>
-          <div class="form-group">
-            <!-- <label for="password">Password</label> -->
-            <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" required>
-            <a href="register">Register here</a>
-          </div>
-          <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" [ngClass]="{ 'btn-disabled': loginForm.invalid }">Login</button>
-        </form>
-      </div>
+<div class="flex flex-col items-center">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="text-center">
+      <h1>Login</h1>
     </div>
-  </div>
-  
+    <div>
+      <input class="border border-black p-1" placeholder="Email" type="email" id="email" formControlName="email">
+    </div>
+    <div>
+      <input class="border border-black mt-4 p-1" placeholder="Password" type="password" id="password" formControlName="password">
+    </div>
+    <div class="flex justify-center">
+      <button type="submit" class="bg-blue-600 text-white px-4 py-1 rounded mt-4 disabled:bg-slate-300" [disabled]="!loginForm.valid">Login</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,66 @@
+<div class="max-w-screen-2xl mx-auto">
+    <section>
+        <div class="relative">
+            <div class="w-full h-auto">
+                <img src="../../../assets/images/banners/banner-1.jpg" alt="">
+            </div>
+            <div class="absolute inset-0 flex flex-col justify-center items-center">
+                <div class="flex">
+                    <p class="bg-black p-4 text-7xl text-white">Adicto</p>
+                    <p class="bg-white p-4 text-7xl text-black">Vibes</p>
+                </div>
+                <div>
+                    <p class="text-3xl bg-white p-4">A Place Where You can Find 100% Cotton.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="bg-slate-200">
+            <div class="text-center pt-5 text-2xl font-bold">
+                Checkout Some Amazing Products
+            </div>
+            <ul>
+                <div class="flex justify-center pb-5">
+                    <li *ngFor="let product of productList">
+                        <div class="bg-slate-50 shadow-xl rounded m-4">
+                            <div>
+                                <img class="w-56 h-56 object-cover" src="{{product.imgUrl}}" alt="">
+                            </div>
+                            <div class="p-4">
+                                <div class="flex justify-between">
+                                    <p>{{product.name}}</p>
+                                    <p>{{product.price | currency}}</p>
+                                </div>
+                                <div class="flex justify-between">
+                                    Color: {{product.color}}
+                                    <button class="bg-blue-500 hover:bg-blue-900 text-white p-2 rounded-sm">Add Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <div class="relative">
+            <div class="w-full h-auto">
+                <img src="../../../assets/images/banners/banner-2.jpg" alt="">
+            </div>
+            <div class="absolute inset-0 flex flex-col justify-center items-center">
+                <div class="bg-slate-200 p-5 rounded">
+                    <p class="bg-white p-4 italic">Make Your Online Shopping Easier.</p>
+                    <button class="bg-black text-white p-4">Click to Start Shopping</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <div class="border w-1/2">
+        <app-advertisements></app-advertisements>
+    </div>
+    <div class="border w-1/2">
+        <app-categories></app-categories>
+    </div>   -->
+</div>
+

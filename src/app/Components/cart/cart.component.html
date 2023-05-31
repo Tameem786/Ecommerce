@@ -1,0 +1,63 @@
+<div class="max-w-screen-2xl mx-auto flex justify-center">
+    <div class="py-12 px-4 w-1/2 shadow-md">
+        <div class="text-center">
+            <p class="text-4xl font-medium font-sans">Shopping Cart</p>
+        </div>
+        <div>
+            <ul>
+                <li *ngFor="let item of carts.getCart()">
+                    <hr>
+                    <div class="flex justify-between py-4">
+                        <div class="flex">
+                            <div class="w-1/5 shadow-sm rounded-md">
+                                <img src="{{ item.getProduct().img_url }}" alt="">
+                            </div>
+                            <div class="flex flex-col justify-between">
+                                <div>
+                                    <div>{{ item.getProduct().product_name }}</div>
+                                    <div>{{ item.getProduct().product_color }}</div>
+                                    <div>{{ item.getProduct().product_size }}</div>
+                                </div>
+                                <div class="flex">
+                                    <div>
+                                        <button (click)="decrease( item.getId() )">
+                                            <mat-icon class="bg-slate-500 text-white rounded">remove</mat-icon>
+                                        </button>
+                                    </div>
+                                    <div class="w-1/2 text-center px-2">
+                                        <span>{{ item.getNumber() }}</span>
+                                    </div>
+                                    <div>
+                                        <button (click)="increase( item.getId() )">
+                                            <mat-icon class="bg-slate-500 text-white rounded">add</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col justify-between">
+                            <div>
+                                {{ item.getProduct().product_price * item.getNumber() | currency }}
+                            </div>
+                            <div>
+                                <button (click)="removeItem( item.getId() )" class="text-blue-600 font-medium">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <div class="flex justify-between py-6">
+            <div class="">
+                <div class="text-lg">Subtotal</div>
+                <p class="text-gray-500">Shipping and taxes will be calculated at checkout.</p>
+            </div>
+            <div class="text-lg">{{ totalPrice | currency }}</div>
+        </div>
+        <div>
+            <button class="bg-blue-700 text-white w-full py-2 rounded">Checkout</button>
+        </div>
+        <div></div>
+    </div>
+</div>

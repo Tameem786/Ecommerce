@@ -1,0 +1,23 @@
+<div class="max-w-screen-2xl mx-auto py-16 px-72 bg-slate-200">
+    <div class="flex justify-center items-center shadow-md shadow-slate-900 rounded">
+        <div class="w-1/2">
+            <div class="flex justify-center">
+                <h1 class="pr-1">Welcome to </h1>
+                <h1 class="bg-slate-500 rounded text-white px-1">AdictoVibes </h1> 
+            </div>
+            <div class="flex justify-center mt-2">
+                <button [disabled]="buttonToogle" class="bg-slate-200 text-white p-2 rounded disabled:bg-slate-800" (click)="onClick('login')">Login</button>
+                <button [disabled]="!buttonToogle" class="bg-slate-200 text-white p-2 rounded disabled:bg-slate-800" (click)="onClick('register')">Registration</button>
+            </div>
+            <div>
+                <app-login *ngIf="content === 'login'"></app-login>
+                <app-register *ngIf="content === 'register'"></app-register>
+            </div>
+        </div>
+        <div class="w-1/2">
+            <img class="" src="../../../assets/images/banners/banner-4.jpg" alt="">
+            <img class="" src="../../../assets/images/banners/banner-4.jpg" alt="">
+            <img class="" src="../../../assets/images/banners/banner-4.jpg" alt="">
+        </div>
+    </div>
+</div>

@@ -1,44 +1,37 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { HomeComponent } from '../home/home.component';
-// import { HomeComponent } from '../home/home.component';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { FeatureService } from 'src/app/services/feature.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
-  loginForm!: FormGroup;
+export class LoginComponent implements OnInit {
+  // @Output() status = new EventEmitter<boolean>();
+  loggedIn: boolean = false;
+  loginForm = new FormGroup({
+    email: new FormControl('', Validators.email),
+    password: new FormControl('', Validators.required),
+  });
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
-    this.createForm();
-  }
+  constructor(private auth: AuthenticationService, private router: Router, private feature: FeatureService) {}
 
-  createForm() {
-    this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+  ngOnInit(): void {
+    this.auth.isLoggedIn().subscribe((value: boolean) => {
+      this.loggedIn = value; 
+      console.log('Logged In Status Change! ', this.loggedIn);
     })
   }
-
+ 
   onSubmit() {
-    if(this.loginForm.invalid) {
-      return;
-    }
-    const email = this.loginForm.controls['email'].value;
-    const password = this.loginForm.controls['password'].value;
-
-    if(email==='tanvir.sakline@gmail.com' && password==='12345') {
-      this.router.navigate(['./'])
-      // this.home.setLoginStatus(true)
-    } else {
-      console.log('Incorrect Password');
-    }
-
-    // console.log('Email: ', email);
-    // console.log('Password: ', password);
+    this.auth.login(this.loginForm.value.email || '', this.loginForm.value.password || '');  
+    this.feature.setValue('home');
   }
 
+  // getUsers(): void {
+    
+  // }
 }
