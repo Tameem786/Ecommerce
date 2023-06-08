@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   title = 'Ecommerce';
   loadedFeature = '';
   newUser: User = null!;
+  // newUser: User = new User(2, '', '', '', '', '','');
 
   constructor(private auth: AuthenticationService, private feature: FeatureService) {
   }

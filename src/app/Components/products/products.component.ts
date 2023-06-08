@@ -1,26 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Cart } from 'src/app/models/cart.model';
 import { Product } from 'src/app/models/product.model';
+import { User } from 'src/app/models/user.model';
+import { CartService } from 'src/app/services/cart.service';
+import { DatabaseService } from 'src/app/services/database.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
 
-  products = [
-    new Product(1, 'T-Shirt', 'Black', 'XL', 35, '../../../assets/images/products/pants/1.jpg', 'T-Shirt'),
-    new Product(1, 'T-Shirt', 'Black', 'XL', 35, '../../../assets/images/products/pants/2.jpg', 'T-Shirt'),
-    new Product(1, 'T-Shirt', 'Black', 'XL', 35, '../../../assets/images/products/pants/3.jpg', 'T-Shirt'),
-    new Product(1, 'T-Shirt', 'Black', 'XL', 35, '../../../assets/images/products/hoodies/1.jpg', 'T-Shirt'),
-    new Product(1, 'T-Shirt', 'Black', 'XL', 35, '../../../assets/images/products/hoodies/2.jpg', 'T-Shirt'),
-    new Product(1, 'T-Shirt', 'Black', 'XL', 35, '../../../assets/images/products/hoodies/3.jpg', 'T-Shirt'),
-    new Product(1, 'T-Shirt', 'Black', 'XL', 35, '../../../assets/images/products/socks/1.jpg', 'T-Shirt'),
-    new Product(1, 'T-Shirt', 'Black', 'XL', 35, '../../../assets/images/products/socks/2.jpg', 'T-Shirt'),
-    new Product(1, 'T-Shirt', 'Black', 'XL', 35, '../../../assets/images/products/socks/3.jpg', 'T-Shirt'),
-    new Product(1, 'T-Shirt', 'Black', 'XL', 35, '../../../assets/images/products/shirts/1.jpg', 'T-Shirt'),
-    new Product(1, 'T-Shirt', 'Black', 'XL', 35, '../../../assets/images/products/shirts/2.jpg', 'T-Shirt'),
-    new Product(1, 'T-Shirt', 'Black', 'XL', 35, '../../../assets/images/products/shirts/3.jpg', 'T-Shirt'),
-  ];
+  products: any[] = [];
+  @Input() newUser: User = null!;
+  userID: string = '';
+
+  constructor(private product: ProductService, private cart: CartService) {}
+
+  ngOnInit(): void {
+    this.product.getProducts().subscribe((response: any) => {
+      this.products = response;
+      console.log(this.products);
+    })
+    this.userID = localStorage.getItem('userId') || '';
+  }
+
+  addToCart(id: string, body: any) {
+    console.log(id);
+    this.cart.addToCart(id, body).subscribe((response: any) => {
+      console.log(response);
+    })
+    // console.log('Cart added: ', id)
+  }
 
 }

@@ -6,8 +6,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ProductsComponent } from './components/products/products.component';
 import { CartComponent } from './components/cart/cart.component';
+import { AppComponent } from './app.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  // {path: '', component: AppComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

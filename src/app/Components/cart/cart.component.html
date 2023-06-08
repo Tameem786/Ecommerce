@@ -3,32 +3,32 @@
         <div class="text-center">
             <p class="text-4xl font-medium font-sans">Shopping Cart</p>
         </div>
-        <div>
+        <div *ngIf="shoppingItem.length > 0">
             <ul>
-                <li *ngFor="let item of carts.getCart()">
+                <li *ngFor="let item of shoppingItem">
                     <hr>
                     <div class="flex justify-between py-4">
                         <div class="flex">
                             <div class="w-1/5 shadow-sm rounded-md">
-                                <img src="{{ item.getProduct().img_url }}" alt="">
+                                <img src="{{ item.img_url }}" alt="">
                             </div>
-                            <div class="flex flex-col justify-between">
+                            <div class="flex flex-col justify-between px-2">
                                 <div>
-                                    <div>{{ item.getProduct().product_name }}</div>
-                                    <div>{{ item.getProduct().product_color }}</div>
-                                    <div>{{ item.getProduct().product_size }}</div>
+                                    <div>{{ item.product_name }}</div>
+                                    <div>{{ item.product_color }}</div>
+                                    <div>{{ item.product_size }}</div>
                                 </div>
                                 <div class="flex">
                                     <div>
-                                        <button (click)="decrease( item.getId() )">
+                                        <button (click)="increase(item._id, item.quantity, -1)">
                                             <mat-icon class="bg-slate-500 text-white rounded">remove</mat-icon>
                                         </button>
                                     </div>
                                     <div class="w-1/2 text-center px-2">
-                                        <span>{{ item.getNumber() }}</span>
+                                        <span>{{ item.quantity }}</span>
                                     </div>
                                     <div>
-                                        <button (click)="increase( item.getId() )">
+                                        <button (click)="increase(item._id, item.quantity, 1)">
                                             <mat-icon class="bg-slate-500 text-white rounded">add</mat-icon>
                                         </button>
                                     </div>
@@ -37,10 +37,10 @@
                         </div>
                         <div class="flex flex-col justify-between">
                             <div>
-                                {{ item.getProduct().product_price * item.getNumber() | currency }}
+                                {{ item.product_price*item.quantity | currency }}
                             </div>
                             <div>
-                                <button (click)="removeItem( item.getId() )" class="text-blue-600 font-medium">Remove</button>
+                                <button class="text-blue-600 font-medium">Remove</button>
                             </div>
                         </div>
                     </div>
@@ -48,16 +48,18 @@
             </ul>
         </div>
         <hr>
-        <div class="flex justify-between py-6">
+        <div class="flex justify-between py-6" *ngIf="shoppingItem.length > 0">
             <div class="">
                 <div class="text-lg">Subtotal</div>
                 <p class="text-gray-500">Shipping and taxes will be calculated at checkout.</p>
             </div>
             <div class="text-lg">{{ totalPrice | currency }}</div>
         </div>
-        <div>
+        <div *ngIf="shoppingItem.length > 0">
             <button class="bg-blue-700 text-white w-full py-2 rounded">Checkout</button>
         </div>
-        <div></div>
+        <div *ngIf="shoppingItem.length === 0" class="flex justify-center items-center h-96">
+            <p>No Items in the cart.</p>
+        </div>
     </div>
 </div>

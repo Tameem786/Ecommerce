@@ -4,11 +4,11 @@
         <!-- <app-header (featureSelcted)="onNavigate($event)"></app-header> -->
     </div>
     <div>
-        <app-body *ngIf="loadedFeature === 'home'"></app-body>
-        <app-products *ngIf="loadedFeature === 'products'"></app-products>
+        <app-body *ngIf="loadedFeature === 'home'" [newUser]="newUser"></app-body>
+        <app-products *ngIf="loadedFeature === 'products'" [newUser]="newUser"></app-products>
         <app-contact *ngIf="loadedFeature === 'contact'"></app-contact>
         <app-login-body *ngIf="loadedFeature === 'login'"></app-login-body>
-        <app-cart *ngIf="loadedFeature === 'cart'"></app-cart>
+        <app-cart *ngIf="loadedFeature === 'cart'" [newUser]="newUser"></app-cart>
         <app-profile *ngIf="loadedFeature === 'profile'" [newUser]="newUser"></app-profile>
     </div>
     <div>

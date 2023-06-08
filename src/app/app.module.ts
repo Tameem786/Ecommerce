@@ -52,7 +52,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatGridListModule,
     NgImageSliderModule,
     HttpClientModule,
-    MatBadgeModule
+    MatBadgeModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

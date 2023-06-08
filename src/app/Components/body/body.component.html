@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="flex justify-between">
                                     Color: {{product.color}}
-                                    <button class="bg-blue-500 hover:bg-blue-900 text-white p-2 rounded-sm">Add Cart</button>
+                                    <button (click)="addToCart(product.id)" class="bg-blue-500 hover:bg-blue-900 text-white p-2 rounded-sm">Add Cart</button>
                                 </div>
                             </div>
                         </div>

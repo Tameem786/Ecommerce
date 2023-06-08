@@ -3,14 +3,22 @@ import { Cart } from "./cart.model";
 export class Carts {
     carts: Cart[] = [];
 
-    constructor(){}
+    constructor(){
+    }
 
-    addCart(cart: Cart) {
-        this.carts[this.carts.length] = cart;
+    // addCart(cart: Cart) {
+    //     this.carts[this.carts.length] = cart;
+    // }
+
+    setCart(cart: Cart[]): void {
+        this.carts = cart;
     }
 
     getCart() {
-        return this.carts;
+        if(this.carts != null) {
+            return this.carts;
+        } else
+            return [];
     }
 
 }

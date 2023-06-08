@@ -1,7 +1,10 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, Input } from '@angular/core';
 import { Cart } from 'src/app/models/cart.model';
 import { Carts } from 'src/app/models/carts.model';
 import { Product } from 'src/app/models/product.model';
+import { User } from 'src/app/models/user.model';
+import { CartService } from 'src/app/services/cart.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import { PriceCalculatorService } from 'src/app/services/price-calculator.service';
 
 @Component({
@@ -10,50 +13,46 @@ import { PriceCalculatorService } from 'src/app/services/price-calculator.servic
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  carts: Carts;
+  // carts: Carts;
   totalPrice: number = 0;
-  quantity: number = 0;
-  cartLength: number = 0;
+  shoppingItem: any[] = [];
+  id: string = '';
+  @Input() newUser: User = null!;
 
   ngOnInit(): void {
-    // this.carts = new Carts();
-    this.carts.addCart(new Cart(1, new Product(1, 'T-Shirt', 'Black', 'XL', 35, 
-    'https://www.decathlon.com.bd/pub/media/catalog/product/cache/c687aa7517cf01e65c009f6943c2b1e9/8/5/8549765.jpg', 'Shirt')));
-    this.carts.addCart(new Cart(2, new Product(2, 'Hoodie', 'Blue', 'L', 75, 
-    'https://www.decathlon.com.bd/pub/media/catalog/product/cache/c687aa7517cf01e65c009f6943c2b1e9/8/5/8549765.jpg', 'Shirt')));
-    this.carts.addCart(new Cart(3, new Product(3, 'Socks', 'Dark Grey', 'XL', 45, 
-    'https://www.decathlon.com.bd/pub/media/catalog/product/cache/c687aa7517cf01e65c009f6943c2b1e9/8/5/8549765.jpg', 'Shirt')));
-    
-    this.calc.calculatePrice(this.carts);
-    this.calc.getPrice().subscribe((value) => {
-      console.log('Price Updated');
-      this.totalPrice = value;
+    console.log('NgOnit()')
+    this.id = localStorage.getItem('userId') || '';
+    this.cart.getCart(this.id).subscribe((response: any) => {
+      response.forEach((item: any) => {
+        this.cart.getProduct(item.product_id).subscribe((data: any) => {
+          const withQuantity = {...data, quantity: item.quantity}
+          this.shoppingItem.push(withQuantity)
+        })
+        // console.log(this.shoppingItem)
+        // console.log(item.product_id);
+      })
     })
+    console.log(this.shoppingItem);
   }
   
-  constructor(private calc: PriceCalculatorService) {
-    this.carts = new Carts();
-    // this.calc.calculatePrice();
+  constructor(private calc: PriceCalculatorService, private cart: CartService) {
+    this.id = localStorage.getItem('userId') || '';
   }
 
-  // getPrice() {
-  //   this.totalPrice = this.carts.getCart()[1].getProductPrice();
-  // }
-
-  increase(val: number) {
-    this.carts.getCart()[val-1].increase_item();
-    this.calc.calculatePrice(this.carts);
-    // console.log(this.carts.getCart()[val-1].getNumber())
-  }
-
-  decrease(val: number) {
-    this.carts.getCart()[val-1].decrease_item();
-    this.calc.calculatePrice(this.carts);
+  increase(prod: String, curr_val: number, inc: number) {
+    const body = {"quantity": curr_val+inc}
+    this.cart.updateItemQuantity(localStorage.getItem('userId') || '', prod, body).subscribe((respose) => {
+      console.log(respose)
+      console.log('Item Increased')
+    })
+    
+    // this.shoppingItem[val-1].increase_item();
+    // this.calc.calculatePrice(this.shoppingItem);
   }
 
   removeItem(id: number) {
-    this.carts.getCart().splice(id, 1);
-    this.calc.calculatePrice(this.carts);
+    this.shoppingItem.splice(id, 1);
+    this.calc.calculatePrice(this.shoppingItem);
   }
 
 }
