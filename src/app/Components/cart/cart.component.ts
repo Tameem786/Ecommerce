@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges, Input } from '@angular/core';
+import { BehaviorSubject, Observable, pipe, take } from 'rxjs';
 import { Cart } from 'src/app/models/cart.model';
 import { Carts } from 'src/app/models/carts.model';
 import { Product } from 'src/app/models/product.model';
@@ -13,10 +14,11 @@ import { PriceCalculatorService } from 'src/app/services/price-calculator.servic
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  // carts: Carts;
-  totalPrice: number = 0;
-  shoppingItem: any[] = [];
+  price: number = 0;
+  shoppingItem: any[] = []; 
+  shoppingCart: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   id: string = '';
+  orderShowMenu: boolean = true; 
   @Input() newUser: User = null!;
 
   ngOnInit(): void {
@@ -25,34 +27,50 @@ export class CartComponent implements OnInit {
     this.cart.getCart(this.id).subscribe((response: any) => {
       response.forEach((item: any) => {
         this.cart.getProduct(item.product_id).subscribe((data: any) => {
+          const curr_val = this.shoppingCart.value;
           const withQuantity = {...data, quantity: item.quantity}
-          this.shoppingItem.push(withQuantity)
+          this.shoppingCart.next([...curr_val, withQuantity])
         })
-        // console.log(this.shoppingItem)
-        // console.log(item.product_id);
       })
     })
-    console.log(this.shoppingItem);
+    this.shoppingCart.subscribe((value) => {
+      this.shoppingItem = value
+      let total = 0;
+      value.forEach((item) => {
+        total += item.product_price*item.quantity
+        this.price = total
+      })
+    })
+    // console.log(this.shoppingItem);
   }
   
   constructor(private calc: PriceCalculatorService, private cart: CartService) {
     this.id = localStorage.getItem('userId') || '';
   }
 
-  increase(prod: String, curr_val: number, inc: number) {
-    const body = {"quantity": curr_val+inc}
-    this.cart.updateItemQuantity(localStorage.getItem('userId') || '', prod, body).subscribe((respose) => {
-      console.log(respose)
-      console.log('Item Increased')
-    })
-    
-    // this.shoppingItem[val-1].increase_item();
-    // this.calc.calculatePrice(this.shoppingItem);
+  increase(value: number, index: number) {
+    const currItems =  this.shoppingItem.slice()
+    currItems[index] = {...this.shoppingItem[index], quantity: value+1}
+    this.shoppingCart.next(currItems)
   }
 
-  removeItem(id: number) {
-    this.shoppingItem.splice(id, 1);
-    this.calc.calculatePrice(this.shoppingItem);
+  decrease(value: number, index: number) {
+    const currItems =  this.shoppingItem.slice()
+    if(value!=0)
+      currItems[index] = {...this.shoppingItem[index], quantity: value-1}
+    this.shoppingCart.next(currItems)
   }
+
+  removeItem(id: string, index: number) {
+    this.cart.removeItem(localStorage.getItem('userId') || '', id).subscribe((value) => {
+      console.log(value)
+    })
+    this.shoppingItem.splice(index, 1)
+    this.shoppingCart.next(this.shoppingItem)
+  }
+
+  // showOrderButton() {
+  //   this.orderShowMenu = !this.orderShowMenu;
+  // }
 
 }

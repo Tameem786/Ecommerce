@@ -23,6 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { ProfileComponent } from './components/profile/profile.component';
+import { PaymentComponent } from './components/payment/payment.component';
+// import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     RegisterComponent,
     CartComponent,
     ProfileComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     HttpClientModule,
     MatBadgeModule,
     HttpClientModule,
+    // NgxStripeModule.forRoot('pk_test_51NGhGYBAH6jnxsjlNleuVwduxwvYn3qgcpYR3FwAXpYtvxwHj0DmP8It0lEzPE617KFcXy7DyDZSoqmRC3CQYUdY00bnzdZeRV')
   ],
   providers: [],
   bootstrap: [AppComponent]

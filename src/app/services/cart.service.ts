@@ -13,9 +13,9 @@ export class CartService {
     return this.http.put(apiURL+id, body);
   }
 
-  updateItemQuantity(id: String, prod: String, body: any) {
+  removeItem(id: String, prod: String) {
     const apiUrl = 'http://localhost:3000/api/user/'+ id + '/cart/' + prod;
-    return this.http.put(apiUrl, body);
+    return this.http.delete(apiUrl);
   }
 
   getCart(id: String) {
@@ -27,4 +27,5 @@ export class CartService {
     const apiURL = 'http://localhost:3000/api/product/';
     return this.http.get(apiURL+id);
   }
+  
 }

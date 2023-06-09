@@ -5,7 +5,7 @@
         </div>
         <div *ngIf="shoppingItem.length > 0">
             <ul>
-                <li *ngFor="let item of shoppingItem">
+                <li *ngFor="let item of shoppingItem; let i=index;">
                     <hr>
                     <div class="flex justify-between py-4">
                         <div class="flex">
@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="flex">
                                     <div>
-                                        <button (click)="increase(item._id, item.quantity, -1)">
+                                        <button (click)="decrease(item.quantity, i)">
                                             <mat-icon class="bg-slate-500 text-white rounded">remove</mat-icon>
                                         </button>
                                     </div>
@@ -28,7 +28,7 @@
                                         <span>{{ item.quantity }}</span>
                                     </div>
                                     <div>
-                                        <button (click)="increase(item._id, item.quantity, 1)">
+                                        <button (click)="increase(item.quantity, i)">
                                             <mat-icon class="bg-slate-500 text-white rounded">add</mat-icon>
                                         </button>
                                     </div>
@@ -40,7 +40,7 @@
                                 {{ item.product_price*item.quantity | currency }}
                             </div>
                             <div>
-                                <button class="text-blue-600 font-medium">Remove</button>
+                                <button (click)="removeItem(item._id, i)" class="text-blue-600 font-medium">Remove</button>
                             </div>
                         </div>
                     </div>
@@ -53,8 +53,12 @@
                 <div class="text-lg">Subtotal</div>
                 <p class="text-gray-500">Shipping and taxes will be calculated at checkout.</p>
             </div>
-            <div class="text-lg">{{ totalPrice | currency }}</div>
+            <div class="text-lg">{{ price | currency }}</div>
         </div>
+        <!-- <div *ngIf="orderShowMenu">
+            <div>Payment Method</div>
+            <app-payment></app-payment>
+        </div> -->
         <div *ngIf="shoppingItem.length > 0">
             <button class="bg-blue-700 text-white w-full py-2 rounded">Checkout</button>
         </div>
