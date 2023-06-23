@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="flex justify-between">
                                     Color: {{product.color}}
-                                    <button (click)="addToCart(product.id)" class="bg-blue-500 hover:bg-blue-900 text-white p-2 rounded-sm">Add Cart</button>
+                                    <button (click)="view()" class="bg-blue-500 hover:bg-blue-900 text-white p-2 rounded-sm">View More</button>
                                 </div>
                             </div>
                         </div>
@@ -51,16 +51,10 @@
             <div class="absolute inset-0 flex flex-col justify-center items-center">
                 <div class="bg-slate-200 p-5 rounded">
                     <p class="bg-white p-4 italic">Make Your Online Shopping Easier.</p>
-                    <button class="bg-black text-white p-4">Click to Start Shopping</button>
+                    <button class="bg-black text-white p-4" (click)="view()">Click to Start Shopping</button>
                 </div>
             </div>
         </div>
     </section>
-    <!-- <div class="border w-1/2">
-        <app-advertisements></app-advertisements>
-    </div>
-    <div class="border w-1/2">
-        <app-categories></app-categories>
-    </div>   -->
 </div>
 

@@ -2,7 +2,8 @@ import { Component, EventEmitter, Output, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { DatabaseService } from 'src/app/services/database.service';
+import { CartService } from 'src/app/services/cart.service';
+// import { DatabaseService } from 'src/app/services/database.service';
 import { FeatureService } from 'src/app/services/feature.service';
 import { PriceCalculatorService } from 'src/app/services/price-calculator.service';
 
@@ -21,15 +22,20 @@ export class HeaderComponent implements OnInit {
   constructor(
     private auth: AuthenticationService, 
     private feature: FeatureService,
-    private data: DatabaseService
+    // private data: DatabaseService,
+    private cart: CartService
     ) {}
 
   ngOnInit(): void {
+    this.cart.getCartNumber().subscribe((value) => {
+      console.log('Header: ', value)
+      this.numOfProds = value;
+    })
     this.auth.isLoggedIn().subscribe((value: boolean) => {
       this.loggedIn = value;
       console.log('Logged In Status Change! ', this.loggedIn);
     })
-    this.data.getCart().subscribe((value) => this.numOfProds=value.length)
+    // this.data.getCart().subscribe((value) => this.numOfProds=value.length)
     // this.itemNum.getNumberOfProds().next(this.carts.getCart().length);
   
   }

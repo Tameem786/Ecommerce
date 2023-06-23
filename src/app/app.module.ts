@@ -12,8 +12,6 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { HeaderComponent } from './components/header/header.component';
 import { BodyComponent } from './components/body/body.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { AdvertisementsComponent } from './components/body/advertisements/advertisements.component';
-import { CategoriesComponent } from './components/body/categories/categories.component';
 import { ProductsComponent } from './components/products/products.component';
 import { LoginComponent } from './components/login/login.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -32,8 +30,6 @@ import { PaymentComponent } from './components/payment/payment.component';
     HeaderComponent,
     BodyComponent,
     FooterComponent,
-    AdvertisementsComponent,
-    CategoriesComponent,
     ProductsComponent,
     LoginComponent,
     ContactComponent,

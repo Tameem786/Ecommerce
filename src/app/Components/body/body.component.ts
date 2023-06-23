@@ -2,7 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Cart } from 'src/app/models/cart.model';
 import { Product } from 'src/app/models/product.model';
 import { User } from 'src/app/models/user.model';
-import { DatabaseService } from 'src/app/services/database.service';
+import { FeatureService } from 'src/app/services/feature.service';
+// import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
   selector: 'app-body',
@@ -42,23 +43,10 @@ export class BodyComponent {
   @Input() newUser: User = null!;
 
 
-  constructor(private data: DatabaseService) {}
+  constructor(private feature: FeatureService) {}
 
-  addToCart(id: number) {
-    if(this.newUser) {
-      // console.log('User is here, you add: ', this.productList.find(value=> value.id==id))
-      const product = this.productList.find(value=> value.id==id);
-      this.data.addData(this.newUser.getID(), new Cart(2, new Product(
-        product?.id || 0,
-        product?.name || '',
-        product?.color || '',
-        'XL' || '',
-        product?.price || 0,
-        product?.imgUrl || '',
-        product?.label || '',
-      )))
-    } else {
-      console.log('No user logged in, can not add it')
-    }
+  view() {
+    this.feature.setValue('products')
   }
+  
 }

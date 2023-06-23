@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { DatabaseService } from './database.service';
+// import { DatabaseService } from './database.service';
 import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 // import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ export class AuthenticationService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   private newUser = new BehaviorSubject<User>(null!);
 
-  constructor(private user: DatabaseService, private http: HttpClient) { 
+  constructor(private http: HttpClient) { 
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if(isLoggedIn === 'true') {
       this.loggedIn.next(true);

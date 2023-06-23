@@ -1,11 +1,11 @@
-import { Component, OnChanges, OnInit, SimpleChanges, Input } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject, Observable, pipe, take } from 'rxjs';
 import { Cart } from 'src/app/models/cart.model';
 import { Carts } from 'src/app/models/carts.model';
 import { Product } from 'src/app/models/product.model';
 import { User } from 'src/app/models/user.model';
 import { CartService } from 'src/app/services/cart.service';
-import { DatabaseService } from 'src/app/services/database.service';
+// import { DatabaseService } from 'src/app/services/database.service';
 import { PriceCalculatorService } from 'src/app/services/price-calculator.service';
 
 @Component({
@@ -67,6 +67,14 @@ export class CartComponent implements OnInit {
     })
     this.shoppingItem.splice(index, 1)
     this.shoppingCart.next(this.shoppingItem)
+  }
+
+  checkout() {
+    window.location.href = 'https://buy.stripe.com/test_eVa6q2aHI5iP6Fq9AA';
+    this.cart.removeAll(localStorage.getItem('userId') || '').subscribe((value) => {
+      console.log(value);
+    })
+    this.shoppingCart.next([]);
   }
 
   // showOrderButton() {

@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Cart } from 'src/app/models/cart.model';
 import { Product } from 'src/app/models/product.model';
 import { User } from 'src/app/models/user.model';
 import { CartService } from 'src/app/services/cart.service';
-import { DatabaseService } from 'src/app/services/database.service';
+// import { DatabaseService } from 'src/app/services/database.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -16,6 +16,7 @@ export class ProductsComponent implements OnInit {
   products: any[] = [];
   @Input() newUser: User = null!;
   userID: string = '';
+  filter: string = 'all';
 
   constructor(private product: ProductService, private cart: CartService) {}
 
@@ -32,7 +33,12 @@ export class ProductsComponent implements OnInit {
     this.cart.addToCart(id, body).subscribe((response: any) => {
       console.log(response);
     })
+    this.cart.setCartNumber();
     // console.log('Cart added: ', id)
+  }
+
+  filterBy(value: string) {
+    this.products = this.products.filter(product => product.tag === value);
   }
 
 }
