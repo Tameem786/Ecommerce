@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cart } from 'src/app/models/cart.model';
 import { Product } from 'src/app/models/product.model';
 import { User } from 'src/app/models/user.model';
-import { FeatureService } from 'src/app/services/feature.service';
-// import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
   selector: 'app-body',
@@ -43,10 +42,10 @@ export class BodyComponent {
   @Input() newUser: User = null!;
 
 
-  constructor(private feature: FeatureService) {}
+  constructor(private router: Router) {}
 
   view() {
-    this.feature.setValue('products')
+    this.router.navigate(['products'])
   }
   
 }

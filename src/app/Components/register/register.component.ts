@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { FeatureService } from 'src/app/services/feature.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +10,7 @@ import { FeatureService } from 'src/app/services/feature.service';
 })
 export class RegisterComponent {
 
-  constructor(private auth: AuthenticationService, private feature: FeatureService) {}
+  constructor(private auth: AuthenticationService, private router: Router) {}
 
   RegisterForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -24,7 +24,7 @@ export class RegisterComponent {
       this.RegisterForm.value.email || '', 
       this.RegisterForm.value.password || ''
     )
-    this.feature.setValue('home');
+    this.router.navigate([''])
   }
   
 }

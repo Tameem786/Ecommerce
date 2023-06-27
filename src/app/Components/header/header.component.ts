@@ -3,9 +3,6 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
-// import { DatabaseService } from 'src/app/services/database.service';
-import { FeatureService } from 'src/app/services/feature.service';
-import { PriceCalculatorService } from 'src/app/services/price-calculator.service';
 
 @Component({
   selector: 'app-header',
@@ -21,9 +18,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private auth: AuthenticationService, 
-    private feature: FeatureService,
-    // private data: DatabaseService,
-    private cart: CartService
+    private cart: CartService,
+    private router: Router
     ) {}
 
   ngOnInit(): void {
@@ -40,12 +36,10 @@ export class HeaderComponent implements OnInit {
   
   }
 
-  onSelect(feature: string) {
-    this.feature.setValue(feature);
-  }
+
 
   logout() {
     this.auth.logout();
-    this.feature.setValue('home');
+    this.router.navigate([''])
   }
 }

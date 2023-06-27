@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 // import { DatabaseService } from './database.service';
 import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 // import { Router } from '@angular/router';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class AuthenticationService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   private newUser = new BehaviorSubject<User>(null!);
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private router: Router) { 
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if(isLoggedIn === 'true') {
       this.loggedIn.next(true);
@@ -60,6 +61,7 @@ export class AuthenticationService {
     console.log('Logging Out!!!');
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
+    localStorage.removeItem('userId');
     this.loggedIn.next(false);
   }
 

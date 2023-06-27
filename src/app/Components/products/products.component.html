@@ -8,11 +8,34 @@
         <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-2 mb-2" (click)="filterBy('Socks')">Socks</button>
       </div>      
       <h2 class="text-2xl font-bold tracking-tight text-gray-900">Products</h2>
-      <ul>
+      <div class="">
+          <ul>
+            <div class="flex flex-wrap justify-center pb-5">
+                <li *ngFor="let product of products">
+                    <div class="bg-slate-50 shadow-xl rounded m-4">
+                        <div>
+                            <img class="w-56 h-56 object-cover" src="{{product.img_url}}" alt="">
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between">
+                                <p>{{product.product_name}}</p>
+                                <p>{{product.product_price | currency}}</p>
+                            </div>
+                            <div class="flex justify-between">
+                                Color: {{product.color}}
+                                <button (click)="viewProduct(product)" class="bg-blue-500 hover:bg-blue-900 text-white p-2 rounded-sm">View Product</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </div>
+        </ul>
+      </div>
+      <!-- <ul>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <li *ngFor="let product of products">
             <ng-container>
-              <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+              <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl">
                 <img src="{{product.img_url}}" alt="" class="w-full">
                 <div class="p-4">
                   <h3 class="font-semibold text-gray-700">{{product.product_name}}</h3>
@@ -21,13 +44,13 @@
                     <p>{{product.product_price | currency}}</p>
                   </div>
                   <div class="flex justify-end mt-4">
-                    <button (click)="addToCart(userID, {'cart': {'product_id': product._id, 'quantity': 1}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded">Add Cart</button>
+                    <button (click)="viewProduct(product)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded">View Product</button>
                   </div>
                 </div>
               </div>
             </ng-container>
           </li>
         </div>
-      </ul>
+      </ul> -->
     </div>
   </div>

@@ -40,8 +40,9 @@ export class CartService {
     return this.itemCount;
   }
 
-  setCartNumber() {
-    this.itemCount.next(this.itemCount.getValue() + 1);
+  setCartNumber(val: number) {
+    if (this.itemCount.getValue() + val >= 0)
+      this.itemCount.next(this.itemCount.getValue() + val);
   }
 
 }

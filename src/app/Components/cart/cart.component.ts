@@ -5,8 +5,6 @@ import { Carts } from 'src/app/models/carts.model';
 import { Product } from 'src/app/models/product.model';
 import { User } from 'src/app/models/user.model';
 import { CartService } from 'src/app/services/cart.service';
-// import { DatabaseService } from 'src/app/services/database.service';
-import { PriceCalculatorService } from 'src/app/services/price-calculator.service';
 
 @Component({
   selector: 'app-cart',
@@ -44,7 +42,7 @@ export class CartComponent implements OnInit {
     // console.log(this.shoppingItem);
   }
   
-  constructor(private calc: PriceCalculatorService, private cart: CartService) {
+  constructor(private cart: CartService) {
     this.id = localStorage.getItem('userId') || '';
   }
 
@@ -67,14 +65,16 @@ export class CartComponent implements OnInit {
     })
     this.shoppingItem.splice(index, 1)
     this.shoppingCart.next(this.shoppingItem)
+    this.cart.setCartNumber(-1);
   }
 
   checkout() {
-    window.location.href = 'https://buy.stripe.com/test_eVa6q2aHI5iP6Fq9AA';
-    this.cart.removeAll(localStorage.getItem('userId') || '').subscribe((value) => {
-      console.log(value);
-    })
+    // window.location.href = 'https://buy.stripe.com/test_eVa6q2aHI5iP6Fq9AA';
+    // this.cart.removeAll(localStorage.getItem('userId') || '').subscribe((value) => {
+    //   console.log(value);
+    // })
     this.shoppingCart.next([]);
+    this.cart.setCartNumber(0)
   }
 
   // showOrderButton() {

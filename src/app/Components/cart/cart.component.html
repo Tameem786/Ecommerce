@@ -63,6 +63,23 @@
             <button class="bg-blue-700 text-white w-full py-2 rounded" (click)="checkout()">
                 Checkout
             </button>
+            <!--
+                Body 
+                {
+                "order_by": "Tameem",
+                "order_status": 0,
+                "order_amount": 150,
+                "order_item": [
+                    {
+                        "product_id": "647ddeff795bbe217a3c7b01",
+                        "quantity": 1
+                    },
+                    {
+                        "product_id": "647ddeff795bbe217a3c7b03",
+                        "quantity": 2
+                    }
+                ]
+            } -->
         </div>
         <div *ngIf="shoppingItem.length === 0" class="flex justify-center items-center h-96">
             <p>No Items in the cart.</p>

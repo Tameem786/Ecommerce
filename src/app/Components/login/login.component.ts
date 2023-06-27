@@ -2,7 +2,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { FeatureService } from 'src/app/services/feature.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +16,10 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private auth: AuthenticationService, private router: Router, private feature: FeatureService) {}
+  constructor(
+    private auth: AuthenticationService, 
+    private router: Router, 
+    ) {}
 
   ngOnInit(): void {
     this.auth.isLoggedIn().subscribe((value: boolean) => {
@@ -27,8 +29,8 @@ export class LoginComponent implements OnInit {
   }
  
   onSubmit() {
-    this.auth.login(this.loginForm.value.email || '', this.loginForm.value.password || '');  
-    this.feature.setValue('home');
+    console.log(this.auth.login(this.loginForm.value.email || '', this.loginForm.value.password || ''))
+    this.router.navigate([''])
   }
 
   // getUsers(): void {

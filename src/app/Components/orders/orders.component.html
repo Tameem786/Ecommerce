@@ -1,0 +1,61 @@
+<div class="max-w-screen-2xl mx-auto flex justify-center mb-20">
+    <div class="py-12 px-4 w-1/2 shadow-md">
+        <div class="text-center">
+            <p class="text-4xl font-medium font-sans">Your Order List</p>
+        </div>
+        <div *ngIf="orderList.length > 0">
+            <ul>
+                <li *ngFor="let item of orderList; let i=index;">
+                    <mat-card class="mt-5">
+                        <mat-card-header>
+                            <div class="flex flex-row justify-between w-full">
+                                <div>
+                                    Order #{{item._id}}
+                                </div>
+                                <div class="flex flex-row">
+                                    <button class="text-green-500 rounded-lg p-2">Receive Order</button>
+                                    <button class="text-red-500 rounded-lg p-2">Cancel Order</button>
+                                </div>
+                            </div>
+                        </mat-card-header>
+                        <mat-card-content>
+                          <section class="">
+                            <mat-progress-bar
+                                class=""
+                                [color]="color"
+                                [mode]="mode"
+                                [value]="item.order_status"
+                                [bufferValue]="bufferValue">
+                            </mat-progress-bar>
+                          </section>
+                          <section>
+                            <div class="flex flex-row justify-around">
+                                <div class="border w-full text-center p-2 text-{{item.order_status >= 25? 'white':'black'}} bg-{{item.order_status >= 25? 'blue-500':'white'}}">
+                                    <mat-icon>build icon</mat-icon>
+                                    <p>Order Processed</p>
+                                </div>
+                                <div class="border w-full text-center p-2 text-{{item.order_status >= 50? 'white':'black'}} bg-{{item.order_status >= 50? 'blue-500':'white'}}">
+                                    <mat-icon>event note icon</mat-icon>
+                                    <p>Order Shipped</p>
+                                </div>
+                                <div class="border w-full text-center p-2 text-{{item.order_status >= 75? 'white':'black'}} bg-{{item.order_status >= 75? 'blue-500':'white'}}">
+                                    <mat-icon>local_shipping</mat-icon>
+                                    <p>Out for Delivery</p>
+                                </div>
+                                <div class="border w-full text-center p-2 text-{{item.order_status >= 100? 'white':'black'}} bg-{{item.order_status >= 100? 'blue-500':'white'}}">
+                                    <mat-icon>done</mat-icon>
+                                    <p>Delivered</p>
+                                </div>
+                            </div>
+                          </section>
+                        </mat-card-content>
+                      </mat-card>
+                </li>
+            </ul>
+        </div>
+        <p class="font-extralight text-gray-400">Note: Order after delivery can not be canceled.</p>
+        <div *ngIf="orderList.length === 0" class="flex justify-center items-center h-96">
+            <p>You haven't ordered yet.</p>
+        </div>
+    </div>
+</div>

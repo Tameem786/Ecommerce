@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { User } from './models/user.model';
 import { AuthenticationService } from './services/authentication.service';
-import { FeatureService } from './services/feature.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +14,7 @@ export class AppComponent implements OnInit {
   
   // newUser: User = new User(2, '', '', '', '', '','');
 
-  constructor(private auth: AuthenticationService, private feature: FeatureService) {
+  constructor(private auth: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -27,10 +26,6 @@ export class AppComponent implements OnInit {
       } else {
         console.log('No User Found!');
       }
-    });
-    this.feature.getValue().subscribe((value) => {
-      console.log('Feature State: ', value);
-      this.loadedFeature = value;
     });
   }
 

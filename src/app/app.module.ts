@@ -22,6 +22,12 @@ import { CartComponent } from './components/cart/cart.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { ProductComponent } from './components/products/product/product.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrdersComponent } from './components/orders/orders.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatCardModule} from '@angular/material/card';
 // import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
@@ -38,6 +44,8 @@ import { PaymentComponent } from './components/payment/payment.component';
     CartComponent,
     ProfileComponent,
     PaymentComponent,
+    ProductComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +61,10 @@ import { PaymentComponent } from './components/payment/payment.component';
     HttpClientModule,
     MatBadgeModule,
     HttpClientModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+    MatProgressBarModule,
+    MatCardModule
     // NgxStripeModule.forRoot('pk_test_51NGhGYBAH6jnxsjlNleuVwduxwvYn3qgcpYR3FwAXpYtvxwHj0DmP8It0lEzPE617KFcXy7DyDZSoqmRC3CQYUdY00bnzdZeRV')
   ],
   providers: [],

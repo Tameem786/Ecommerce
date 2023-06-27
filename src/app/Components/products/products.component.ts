@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cart } from 'src/app/models/cart.model';
 import { Product } from 'src/app/models/product.model';
 import { User } from 'src/app/models/user.model';
@@ -18,7 +19,7 @@ export class ProductsComponent implements OnInit {
   userID: string = '';
   filter: string = 'all';
 
-  constructor(private product: ProductService, private cart: CartService) {}
+  constructor(private product: ProductService, private cart: CartService, private router: Router) {}
 
   ngOnInit(): void {
     this.product.getProducts().subscribe((response: any) => {
@@ -28,17 +29,12 @@ export class ProductsComponent implements OnInit {
     this.userID = localStorage.getItem('userId') || '';
   }
 
-  addToCart(id: string, body: any) {
-    console.log(id);
-    this.cart.addToCart(id, body).subscribe((response: any) => {
-      console.log(response);
-    })
-    this.cart.setCartNumber();
-    // console.log('Cart added: ', id)
-  }
-
   filterBy(value: string) {
     this.products = this.products.filter(product => product.tag === value);
+  }
+
+  viewProduct(value: any) {
+    this.router.navigate(['products', value._id])
   }
 
 }
