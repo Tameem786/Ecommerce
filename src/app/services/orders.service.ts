@@ -17,4 +17,8 @@ export class OrdersService {
   getOrders() {
     return this.http.get(this.apiURL+'api/orders')
   }
+
+  delivered(id: string) {
+    return this.http.put(this.apiURL + 'api/order/' + id, {"order_status": 100})
+  }
 }

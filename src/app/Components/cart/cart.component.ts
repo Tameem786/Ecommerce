@@ -1,10 +1,12 @@
 import { Component, OnChanges, OnInit, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, pipe, take } from 'rxjs';
 import { Cart } from 'src/app/models/cart.model';
 import { Carts } from 'src/app/models/carts.model';
 import { Product } from 'src/app/models/product.model';
 import { User } from 'src/app/models/user.model';
 import { CartService } from 'src/app/services/cart.service';
+import { OrdersService } from 'src/app/services/orders.service';
 
 @Component({
   selector: 'app-cart',
@@ -42,7 +44,11 @@ export class CartComponent implements OnInit {
     // console.log(this.shoppingItem);
   }
   
-  constructor(private cart: CartService) {
+  constructor(
+    private cart: CartService, 
+    private order: OrdersService,
+    private router: Router
+  ) {
     this.id = localStorage.getItem('userId') || '';
   }
 
@@ -68,15 +74,39 @@ export class CartComponent implements OnInit {
     this.cart.setCartNumber(-1);
   }
 
-  checkout() {
+  checkout(val: any) {
     // window.location.href = 'https://buy.stripe.com/test_eVa6q2aHI5iP6Fq9AA';
-    // this.cart.removeAll(localStorage.getItem('userId') || '').subscribe((value) => {
-    //   console.log(value);
-    // })
-    this.shoppingCart.next([]);
-    this.cart.setCartNumber(0)
-  }
+    let orderItem: any = []
+    val.forEach((element: any) => {
+      orderItem = [
+        ...orderItem, 
+        {
+          "product_id": element._id,
+          "quantity": element.quantity
+        }
+      ]
+    });
+    
+    const body = {
+      "order_by": localStorage.getItem('username'),
+      "order_status": 0,
+      "order_amount": this.price,
+      "order_item": orderItem
+    }
+    
+    this.order.addToOrderList(body).subscribe((value: any) => {
+      console.log(value)
+    })
 
+    this.cart.removeAll(localStorage.getItem('userId') || '').subscribe((value) => {
+      console.log(value);
+    })
+
+    this.router.navigate(['order'])
+    // this.shoppingCart.next([]);
+    // this.cart.setCartNumber(0)
+  }
+  
   // showOrderButton() {
   //   this.orderShowMenu = !this.orderShowMenu;
   // }

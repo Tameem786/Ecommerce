@@ -20,13 +20,12 @@ export class OrdersComponent implements OnInit {
   ngOnInit(): void {
     this.orderService.getOrders().subscribe((value: any) => {
       this.orderList = value.filter((order: any) => order.order_by == localStorage.getItem('username'))
-      console.log(this.orderList)
     })
   }
 
-  increaseBar() {
-    if (this.value !== 100)
-      this.value += 25;
-    console.log(this.value)
+  received(id: string) {
+    this.orderService.delivered(id).subscribe((value: any) => {
+      this.orderList = value.filter((order: any) => order.order_by == localStorage.getItem('username'));
+    })
   }
 }

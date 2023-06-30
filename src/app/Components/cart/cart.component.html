@@ -60,7 +60,7 @@
             <app-payment></app-payment>
         </div> -->
         <div *ngIf="shoppingItem.length > 0">
-            <button class="bg-blue-700 text-white w-full py-2 rounded" (click)="checkout()">
+            <button class="bg-blue-700 text-white w-full py-2 rounded" (click)="checkout(shoppingItem)">
                 Checkout
             </button>
             <!--
