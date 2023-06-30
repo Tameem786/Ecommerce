@@ -21,4 +21,8 @@ export class OrdersService {
   delivered(id: string) {
     return this.http.put(this.apiURL + 'api/order/' + id, {"order_status": 100})
   }
+
+  removeOrder(id: string) {
+    return this.http.delete(this.apiURL + 'api/order/' + id)
+  }
 }

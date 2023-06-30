@@ -14,7 +14,7 @@
                                 </div>
                                 <div class="flex flex-row">
                                     <ng-container *ngIf="item.order_status < 75;else orderReceieve">
-                                        <button class="text-red-500 rounded-lg p-2">Cancel Order</button>
+                                        <button class="text-red-500 rounded-lg p-2" (click)="cancel(item._id)">Cancel Order</button>
                                     </ng-container>
                                     <ng-template #orderReceieve>
                                         <button class="text-green-500 rounded-lg p-2" (click)="received(item._id)">Receive Order</button>

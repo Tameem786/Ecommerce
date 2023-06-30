@@ -28,4 +28,10 @@ export class OrdersComponent implements OnInit {
       this.orderList = value.filter((order: any) => order.order_by == localStorage.getItem('username'));
     })
   }
+
+  cancel(id: string) {
+    this.orderService.removeOrder(id).subscribe((value: any) => {
+      this.orderList = value.filter((order: any) => order.order_by == localStorage.getItem('username'));
+    })
+  }
 }

@@ -75,7 +75,6 @@ export class CartComponent implements OnInit {
   }
 
   checkout(val: any) {
-    // window.location.href = 'https://buy.stripe.com/test_eVa6q2aHI5iP6Fq9AA';
     let orderItem: any = []
     val.forEach((element: any) => {
       orderItem = [
@@ -97,18 +96,13 @@ export class CartComponent implements OnInit {
     this.order.addToOrderList(body).subscribe((value: any) => {
       console.log(value)
     })
-
+    
     this.cart.removeAll(localStorage.getItem('userId') || '').subscribe((value) => {
       console.log(value);
     })
-
-    this.router.navigate(['order'])
-    // this.shoppingCart.next([]);
-    // this.cart.setCartNumber(0)
+    this.shoppingCart.next([]);
+    this.cart.setCartNumber(0)
+    window.location.href = 'https://buy.stripe.com/test_eVa6q2aHI5iP6Fq9AA';
   }
-  
-  // showOrderButton() {
-  //   this.orderShowMenu = !this.orderShowMenu;
-  // }
 
 }

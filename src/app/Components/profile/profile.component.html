@@ -23,16 +23,16 @@
               <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt class="text-sm font-medium leading-6 text-gray-900">Phone Number</dt>
                 <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  <input type="text" placeholder="{{phone}}" formControlName="phone">
+                  <input class="border" type="text" placeholder="{{phone}}" formControlName="phone">
                 </dd>
               </div>
               <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt class="text-sm font-medium leading-6 text-gray-900">Address Book</dt>
                 <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  <input type="text" placeholder="{{address}}" formControlName="address">
+                  <input class="border" type="text" placeholder="{{address}}" formControlName="address">
                 </dd>
               </div>
-              <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <!-- <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt class="text-sm font-medium leading-6 text-gray-900">Payment Method</dt>
                 <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                   <button *ngIf="isPaymentSelected()" class="bg-blue-700 text-white py-1 px-2 rounded">
@@ -40,7 +40,7 @@
                   </button>
                   <p *ngIf="!isPaymentSelected()">{{ payment }}</p>
                 </dd>
-              </div>
+              </div> -->
             </dl>
             <div class="">
               <button class="w-full bg-green-500 text-white py-2 rounded text-lg"> Save </button>
